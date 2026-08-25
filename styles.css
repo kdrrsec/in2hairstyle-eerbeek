@@ -60,9 +60,10 @@ h2.center { text-align: center; max-width: 640px; margin-left: auto; margin-righ
   max-width: 1140px;
   margin: 0 auto;
   padding: 16px 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 24px;
 }
 .brand {
   font-family: var(--font-head);
@@ -76,7 +77,15 @@ h2.center { text-align: center; max-width: 640px; margin-left: auto; margin-righ
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 32px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
 }
 .nav-links a:not(.btn) {
   font-size: 0.95rem;
