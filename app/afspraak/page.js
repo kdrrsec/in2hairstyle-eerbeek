@@ -8,13 +8,21 @@ function formatEuro(value) {
   );
 }
 
-function todayStr() {
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Amsterdam' }).format(new Date());
+function toDateStr(d) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Amsterdam' }).format(d);
 }
 
-function maxDateStr() {
-  const d = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000);
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Amsterdam' }).format(d);
+function buildDays(count) {
+  const days = [];
+  for (let i = 0; i < count; i++) {
+    const d = new Date(Date.now() + i * 24 * 60 * 60 * 1000);
+    days.push({
+      dateStr: toDateStr(d),
+      dayNum: new Intl.DateTimeFormat('nl-NL', { timeZone: 'Europe/Amsterdam', day: 'numeric' }).format(d),
+      weekday: new Intl.DateTimeFormat('nl-NL', { timeZone: 'Europe/Amsterdam', weekday: 'short' }).format(d),
+    });
+  }
+  return days;
 }
 
 function formatDateLabel(dateStr) {
@@ -28,22 +36,29 @@ function formatDateLabel(dateStr) {
   }).format(dt);
 }
 
+const STEPS = [
+  { key: 'service', label: 'Dienst' },
+  { key: 'time', label: 'Tijd' },
+  { key: 'details', label: 'Gegevens' },
+  { key: 'done', label: 'Klaar' },
+];
+
 export default function AfspraakPage() {
+  const [step, setStep] = useState('service');
   const [treatments, setTreatments] = useState([]);
   const [treatmentId, setTreatmentId] = useState(null);
-  const [date, setDate] = useState('');
+
+  const days = useMemo(() => buildDays(21), []);
+  const [selectedDate, setSelectedDate] = useState(days[0].dateStr);
   const [slots, setSlots] = useState([]);
-  const [time, setTime] = useState(null);
   const [loadingSlots, setLoadingSlots] = useState(false);
+  const [time, setTime] = useState(null);
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [confirmed, setConfirmed] = useState(null);
-
-  const min = useMemo(() => todayStr(), []);
-  const max = useMemo(() => maxDateStr(), []);
 
   useEffect(() => {
     fetch('/api/treatments')
@@ -52,20 +67,28 @@ export default function AfspraakPage() {
   }, []);
 
   useEffect(() => {
-    if (!treatmentId || !date) {
-      setSlots([]);
-      return;
-    }
+    if (step !== 'time' || !treatmentId) return;
     setLoadingSlots(true);
     setTime(null);
-    fetch(`/api/availability?treatmentId=${treatmentId}&date=${date}`)
+    fetch(`/api/availability?treatmentId=${treatmentId}&date=${selectedDate}`)
       .then((r) => r.json())
       .then((data) => setSlots(data.slots || []))
       .finally(() => setLoadingSlots(false));
-  }, [treatmentId, date]);
+  }, [step, treatmentId, selectedDate]);
 
   const selectedTreatment = treatments.find((t) => t.id === treatmentId);
-  const step = !treatmentId ? 1 : !time ? 2 : 3;
+  const maxStepIndex = confirmed
+    ? 3
+    : time
+    ? 2
+    : treatmentId
+    ? 1
+    : 0;
+
+  function goTo(stepKey) {
+    const idx = STEPS.findIndex((s) => s.key === stepKey);
+    if (idx <= maxStepIndex && stepKey !== 'done') setStep(stepKey);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -79,20 +102,22 @@ export default function AfspraakPage() {
       const res = await fetch('/api/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ treatmentId, date, time, name, phone, email }),
+        body: JSON.stringify({ treatmentId, date: selectedDate, time, name, phone }),
       });
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || 'Er ging iets mis. Probeer het opnieuw.');
         if (res.status === 409) {
           setTime(null);
-          fetch(`/api/availability?treatmentId=${treatmentId}&date=${date}`)
+          setStep('time');
+          fetch(`/api/availability?treatmentId=${treatmentId}&date=${selectedDate}`)
             .then((r) => r.json())
             .then((d) => setSlots(d.slots || []));
         }
         return;
       }
-      setConfirmed({ date, time, treatment: selectedTreatment });
+      setConfirmed({ date: selectedDate, time, treatment: selectedTreatment });
+      setStep('done');
     } catch {
       setError('Er ging iets mis. Probeer het opnieuw.');
     } finally {
@@ -100,74 +125,76 @@ export default function AfspraakPage() {
     }
   }
 
-  if (confirmed) {
-    return (
-      <main className="booking-page">
-        <a href="/" className="brand booking-brand">
-          In2<span>Hairstyle</span>
-        </a>
-        <div className="booking-card booking-confirm">
-          <div className="confirm-icon">✓</div>
-          <h1>Afspraak bevestigd</h1>
-          <p>
-            Je afspraak voor <strong>{confirmed.treatment?.name}</strong> op{' '}
-            <strong>{formatDateLabel(confirmed.date)}</strong> om{' '}
-            <strong>{confirmed.time}</strong> uur is ingepland.
-          </p>
-          <p className="confirm-note">
-            Moet je verzetten of annuleren? Bel ons gerust op{' '}
-            <a href="tel:+31313410693">0313 410 693</a>.
-          </p>
-          <a href="/" className="btn btn-primary">
-            Terug naar de website
-          </a>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="booking-page">
       <a href="/" className="brand booking-brand">
         In2<span>Hairstyle</span>
       </a>
-      <div className="booking-card">
-        <p className="eyebrow">Online afspraak maken</p>
-        <h1>Plan je bezoek</h1>
 
-        <div className="booking-step">
-          <h2>1. Kies een behandeling</h2>
-          <div className="treatment-grid">
-            {treatments.map((t) => (
+      <div className="booking-shell">
+        <nav className="stepper">
+          {STEPS.map((s, i) => (
+            <span key={s.key} className="stepper-item">
+              {i > 0 && <span className="stepper-sep">›</span>}
               <button
-                key={t.id}
                 type="button"
-                className={`treatment-option${treatmentId === t.id ? ' selected' : ''}`}
-                onClick={() => setTreatmentId(t.id)}
+                className={`stepper-btn${step === s.key ? ' active' : ''}${i <= maxStepIndex ? ' enabled' : ''}`}
+                onClick={() => goTo(s.key)}
+                disabled={i > maxStepIndex}
               >
-                <span className="treatment-name">{t.name}</span>
-                <span className="treatment-meta">
-                  {t.duration_minutes} min · vanaf €{formatEuro(t.price_from)}
-                </span>
+                {s.label}
               </button>
-            ))}
-          </div>
-        </div>
+            </span>
+          ))}
+        </nav>
 
-        {treatmentId && (
-          <div className="booking-step">
-            <h2>2. Kies een datum</h2>
-            <input
-              type="date"
-              className="date-input"
-              min={min}
-              max={max}
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
+        <div className="booking-grid">
+          <div className="booking-main">
+            {step === 'service' && (
+              <div className="booking-panel">
+                <h1>Kies een dienst</h1>
+                <div className="service-grid">
+                  {treatments.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      className={`service-card${treatmentId === t.id ? ' selected' : ''}`}
+                      onClick={() => {
+                        setTreatmentId(t.id);
+                      }}
+                    >
+                      {treatmentId === t.id && <span className="service-check">✓</span>}
+                      <span className="service-name">{t.name}</span>
+                      <span className="service-duration">{t.duration_minutes} min</span>
+                      <span className="service-price">€{formatEuro(t.price_from)}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
-            {date && (
-              <div className="slots-wrap">
+            {step === 'time' && (
+              <div className="booking-panel">
+                <div className="panel-header-row">
+                  <h1>Kies dag en tijd</h1>
+                  <button type="button" className="today-btn" onClick={() => setSelectedDate(days[0].dateStr)}>
+                    Vandaag
+                  </button>
+                </div>
+                <div className="day-chips">
+                  {days.map((d) => (
+                    <button
+                      key={d.dateStr}
+                      type="button"
+                      className={`day-chip${selectedDate === d.dateStr ? ' selected' : ''}`}
+                      onClick={() => setSelectedDate(d.dateStr)}
+                    >
+                      <span className="day-num">{d.dayNum}</span>
+                      <span className="day-name">{d.weekday}</span>
+                    </button>
+                  ))}
+                </div>
+
                 {loadingSlots && <p className="muted">Beschikbare tijden laden…</p>}
                 {!loadingSlots && slots.length === 0 && (
                   <p className="muted">Geen beschikbare tijden op deze dag. Kies een andere datum.</p>
@@ -179,7 +206,10 @@ export default function AfspraakPage() {
                         key={s}
                         type="button"
                         className={`slot-btn${time === s ? ' selected' : ''}`}
-                        onClick={() => setTime(s)}
+                        onClick={() => {
+                          setTime(s);
+                          setStep('details');
+                        }}
                       >
                         {s}
                       </button>
@@ -188,33 +218,77 @@ export default function AfspraakPage() {
                 )}
               </div>
             )}
-          </div>
-        )}
 
-        {step === 3 && (
-          <form className="booking-step" onSubmit={handleSubmit}>
-            <h2>3. Jouw gegevens</h2>
-            <div className="booking-summary">
-              {selectedTreatment?.name} · {formatDateLabel(date)} om {time} uur
-            </div>
-            <label className="field">
-              <span>Naam *</span>
-              <input value={name} onChange={(e) => setName(e.target.value)} required />
-            </label>
-            <label className="field">
-              <span>Telefoonnummer *</span>
-              <input value={phone} onChange={(e) => setPhone(e.target.value)} required />
-            </label>
-            <label className="field">
-              <span>E-mail (optioneel)</span>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            {error && <p className="form-error">{error}</p>}
-            <button type="submit" className="btn btn-primary" disabled={submitting}>
-              {submitting ? 'Bezig…' : 'Afspraak bevestigen'}
-            </button>
-          </form>
-        )}
+            {step === 'details' && (
+              <div className="booking-panel">
+                <h1>Laatste stap — jouw gegevens</h1>
+                <form onSubmit={handleSubmit} className="details-form">
+                  <label className="field">
+                    <span>Naam *</span>
+                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Voor- en achternaam" required />
+                  </label>
+                  <label className="field">
+                    <span>Telefoonnummer *</span>
+                    <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="06 12 34 56 78" required />
+                  </label>
+                  {error && <p className="form-error">{error}</p>}
+                  <button type="submit" className="btn btn-primary" disabled={submitting}>
+                    {submitting ? 'Bezig…' : 'Afspraak bevestigen'}
+                  </button>
+                  <p className="details-note">We nemen alleen contact op als er iets wijzigt aan je afspraak.</p>
+                </form>
+              </div>
+            )}
+
+            {step === 'done' && confirmed && (
+              <div className="booking-panel booking-confirm">
+                <div className="confirm-icon">✓</div>
+                <h1>Afspraak bevestigd</h1>
+                <p>
+                  Je afspraak voor <strong>{confirmed.treatment?.name}</strong> op{' '}
+                  <strong>{formatDateLabel(confirmed.date)}</strong> om <strong>{confirmed.time}</strong> uur is
+                  ingepland.
+                </p>
+                <p className="confirm-note">
+                  Moet je verzetten of annuleren? Bel ons gerust op <a href="tel:+31313410693">0313 410 693</a>.
+                </p>
+                <a href="/" className="btn btn-primary">
+                  Terug naar de website
+                </a>
+              </div>
+            )}
+          </div>
+
+          <aside className="order-summary">
+            <h2>Jouw afspraak</h2>
+            <p className="order-shop">In2Hairstyle</p>
+
+            {!selectedTreatment && <p className="muted">Nog geen dienst gekozen.</p>}
+
+            {selectedTreatment && (
+              <div className="order-line">
+                <div>
+                  <div className="order-line-name">{selectedTreatment.name}</div>
+                  {time && <div className="order-line-meta">{formatDateLabel(selectedDate)} · {time}</div>}
+                </div>
+                <div className="order-line-price">€{formatEuro(selectedTreatment.price_from)}</div>
+              </div>
+            )}
+
+            {selectedTreatment && (
+              <div className="order-subtotal">
+                <span>Subtotaal</span>
+                <span>€{formatEuro(selectedTreatment.price_from)}</span>
+              </div>
+            )}
+
+            {step === 'service' && treatmentId && (
+              <button type="button" className="btn btn-primary order-cta" onClick={() => setStep('time')}>
+                Kies een tijd
+              </button>
+            )}
+          </aside>
+        </div>
       </div>
     </main>
   );
