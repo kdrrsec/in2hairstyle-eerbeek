@@ -96,28 +96,81 @@ export default function Home() {
             <h2 className="center">Waar wij je mee kunnen helpen</h2>
             <div className="cards">
               <div className="card">
-                <div className="card-icon">✂️</div>
+                <span className="card-tag">Knippen</span>
+                <div className="card-icon-line">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="14" cy="14" r="4" />
+                    <circle cx="14" cy="34" r="4" />
+                    <path d="M17 16 L38 38 M17 32 L38 10" />
+                  </svg>
+                </div>
                 <h3>Knippen</h3>
                 <p>Een knipbeurt op maat, helemaal afgestemd op jouw stijl.</p>
-                <span className="card-price">vanaf €27,50</span>
               </div>
               <div className="card">
-                <div className="card-icon">🧔</div>
+                <span className="card-tag">Baard</span>
+                <div className="card-icon-line">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 14c0-3 2-5 4-5 2 0 3 2 6 2s4-2 6-2c2 0 4 2 4 5" />
+                    <path d="M14 14v6c0 10 4 18 10 18s10-8 10-18v-6" />
+                    <path d="M20 24c1 2 2 3 4 3s3-1 4-3" />
+                  </svg>
+                </div>
                 <h3>Baard</h3>
                 <p>Strak getrimd en verzorgd, perfect in lijn met je gezicht.</p>
-                <span className="card-price">vanaf €17,50</span>
               </div>
               <div className="card">
-                <div className="card-icon">💈</div>
+                <span className="card-tag">Combi</span>
+                <div className="card-icon-line">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 32 L28 12" />
+                    <path d="M28 12 L40 8 L36 20 L28 12Z" />
+                    <path d="M8 32 L6 38 L12 36" />
+                  </svg>
+                </div>
                 <h3>Knippen + Baard</h3>
                 <p>De complete behandeling. Fris de deur uit van top tot kin.</p>
-                <span className="card-price">vanaf €42,50</span>
               </div>
               <div className="card">
-                <div className="card-icon">🧒</div>
+                <span className="card-tag">Kinderen</span>
+                <div className="card-icon-line">
+                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="24" cy="22" r="10" />
+                    <path d="M16 16c2-4 6-6 8-6s6 2 8 6" />
+                    <path d="M19 24c1.5 2 3.5 3 5 3s3.5-1 5-3" />
+                  </svg>
+                </div>
                 <h3>Knippen kind (t/m 12 jaar)</h3>
                 <p>Een ontspannen knipbeurt voor de kleintjes, in een gezellige sfeer.</p>
-                <span className="card-price">vanaf €22,50</span>
+              </div>
+            </div>
+
+            <div className="price-list">
+              <h3 className="price-list-title">Prijslijst</h3>
+              <p className="price-list-category">Hoofdbehandelingen</p>
+              <div className="price-row">
+                <span className="name">Knippen</span>
+                <span className="dots"></span>
+                <span className="duration">30 min</span>
+                <span className="price">€27,50</span>
+              </div>
+              <div className="price-row">
+                <span className="name">Baard</span>
+                <span className="dots"></span>
+                <span className="duration">15 min</span>
+                <span className="price">€17,50</span>
+              </div>
+              <div className="price-row">
+                <span className="name">Knippen + Baard</span>
+                <span className="dots"></span>
+                <span className="duration">45 min</span>
+                <span className="price">€42,50</span>
+              </div>
+              <div className="price-row">
+                <span className="name">Knippen kind (t/m 12 jaar)</span>
+                <span className="dots"></span>
+                <span className="duration">30 min</span>
+                <span className="price">€22,50</span>
               </div>
             </div>
           </div>
