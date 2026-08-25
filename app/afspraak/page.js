@@ -19,10 +19,34 @@ function buildDays(count) {
     days.push({
       dateStr: toDateStr(d),
       dayNum: new Intl.DateTimeFormat('nl-NL', { timeZone: 'Europe/Amsterdam', day: 'numeric' }).format(d),
-      weekday: new Intl.DateTimeFormat('nl-NL', { timeZone: 'Europe/Amsterdam', weekday: 'short' }).format(d),
+      weekday: new Intl.DateTimeFormat('nl-NL', { timeZone: 'Europe/Amsterdam', weekday: 'short' })
+        .format(d)
+        .toUpperCase(),
     });
   }
   return days;
+}
+
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />
+    </svg>
+  );
+}
+
+function timeIsEvening(timeStr) {
+  const hour = Number(timeStr.split(':')[0]);
+  return hour >= 17;
 }
 
 function formatDateLabel(dateStr) {
@@ -48,8 +72,10 @@ export default function AfspraakPage() {
   const [treatments, setTreatments] = useState([]);
   const [treatmentId, setTreatmentId] = useState(null);
 
-  const days = useMemo(() => buildDays(21), []);
-  const [selectedDate, setSelectedDate] = useState(days[0].dateStr);
+  const allDays = useMemo(() => buildDays(60), []);
+  const [visibleDayCount, setVisibleDayCount] = useState(14);
+  const days = allDays.slice(0, visibleDayCount);
+  const [selectedDate, setSelectedDate] = useState(allDays[0].dateStr);
   const [slots, setSlots] = useState([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [time, setTime] = useState(null);
@@ -177,22 +203,35 @@ export default function AfspraakPage() {
               <div className="booking-panel">
                 <div className="panel-header-row">
                   <h1>Kies dag en tijd</h1>
-                  <button type="button" className="today-btn" onClick={() => setSelectedDate(days[0].dateStr)}>
+                  <button type="button" className="today-btn" onClick={() => setSelectedDate(allDays[0].dateStr)}>
                     Vandaag
                   </button>
                 </div>
-                <div className="day-chips">
+                <div className="day-picker">
                   {days.map((d) => (
-                    <button
-                      key={d.dateStr}
-                      type="button"
-                      className={`day-chip${selectedDate === d.dateStr ? ' selected' : ''}`}
-                      onClick={() => setSelectedDate(d.dateStr)}
-                    >
-                      <span className="day-num">{d.dayNum}</span>
-                      <span className="day-name">{d.weekday}</span>
-                    </button>
+                    <div key={d.dateStr} className="day-col">
+                      <button
+                        type="button"
+                        className={`day-circle${selectedDate === d.dateStr ? ' selected' : ''}`}
+                        onClick={() => setSelectedDate(d.dateStr)}
+                      >
+                        {d.dayNum}
+                      </button>
+                      <span className="day-col-label">{d.weekday}</span>
+                    </div>
                   ))}
+                  {visibleDayCount < allDays.length && (
+                    <div className="day-col">
+                      <button
+                        type="button"
+                        className="day-circle day-more"
+                        onClick={() => setVisibleDayCount((c) => Math.min(c + 14, allDays.length))}
+                      >
+                        +
+                      </button>
+                      <span className="day-col-label">Meer</span>
+                    </div>
+                  )}
                 </div>
 
                 {loadingSlots && <p className="muted">Beschikbare tijden laden…</p>}
@@ -211,6 +250,7 @@ export default function AfspraakPage() {
                           setStep('details');
                         }}
                       >
+                        <span className="slot-icon">{timeIsEvening(s) ? <MoonIcon /> : <SunIcon />}</span>
                         {s}
                       </button>
                     ))}
