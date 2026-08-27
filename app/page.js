@@ -112,9 +112,7 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Baard</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 9.3C6 6.4 8.1 4 11 4h2c2.9 0 5 2.4 5 5.3v1.6c-.9-1-2.1-1.6-3.3-1.6-.7 0-1.4.2-1.9.7-.2.2-.5.2-.7 0-.5-.5-1.2-.7-1.9-.7-1.2 0-2.4.6-3.2 1.6V9.3Zm.4 3.6c.5-1 1.6-1.9 2.9-1.9.8 0 1.5.4 1.9.9.2.3.7.3.9 0 .4-.5 1.1-.9 1.9-.9 1.3 0 2.4.9 2.9 1.9.3 3.9-2.4 9.1-6.6 9.1s-6.9-5.2-6.6-9.1Z" />
-                  </svg>
+                  <span className="icon-mask" style={{ '--icon': "url('/icons/beard.png')" }} />
                 </div>
                 <h3>Baard</h3>
                 <p>Strak getrimd en verzorgd, perfect in lijn met je gezicht.</p>
@@ -122,9 +120,7 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Combi</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C9 2 7 4.2 7 7v2.1c-1.1.4-1.9 1.4-1.9 2.7 0 1.1.6 2.1 1.6 2.6.4 4 3 7.1 5.3 7.1s4.9-3.1 5.3-7.1c1-.5 1.6-1.5 1.6-2.6 0-1.3-.8-2.3-1.9-2.7V7c0-2.8-2-5-5-5Zm-3.6 9.3c.9 0 1.7.4 2.2 1.1.2.4.9.4 1.1 0 .5-.7 1.3-1.1 2.2-1.1.2 0 .4 0 .6.1-.3 4.1-2.4 7.6-4.4 7.6s-4.1-3.5-4.4-7.6c.2-.1.4-.1.7-.1Z" />
-                  </svg>
+                  <span className="icon-mask" style={{ '--icon': "url('/icons/cut-beard.png')" }} />
                 </div>
                 <h3>Knippen + Baard</h3>
                 <p>De complete behandeling. Fris de deur uit van top tot kin.</p>
@@ -132,9 +128,7 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Kinderen</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3a7 7 0 0 0-7 7c0 .7.1 1.4.4 2-.3.4-.4.9-.4 1.4 0 3.6 3.1 6.6 7 6.6s7-3 7-6.6c0-.5-.1-1-.4-1.4.3-.6.4-1.3.4-2a7 7 0 0 0-7-7Zm-3 8.5a1.2 1.2 0 1 1 2.4 0 1.2 1.2 0 0 1-2.4 0Zm7.4 0a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0ZM9 15.3c.7.7 1.8 1.2 3 1.2s2.3-.5 3-1.2c-.3 1.8-1.6 3.2-3 3.2s-2.7-1.4-3-3.2Z" />
-                  </svg>
+                  <span className="icon-mask" style={{ '--icon': "url('/icons/child.png')" }} />
                 </div>
                 <h3>Knippen kind (t/m 12 jaar)</h3>
                 <p>Een ontspannen knipbeurt voor de kleintjes, in een gezellige sfeer.</p>
