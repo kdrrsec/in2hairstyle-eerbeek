@@ -18,7 +18,7 @@ export default function Home() {
               onze passie.
             </h1>
             <p className="hero-sub">
-              Vers geknipt, zonder poespas — bij jou om de hoek in Eerbeek.
+              Vers geknipt, zonder poespas, bij jou om de hoek in Eerbeek.
             </p>
             <div className="hero-actions">
               <a href="/afspraak" className="btn btn-primary">
