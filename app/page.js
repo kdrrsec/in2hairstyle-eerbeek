@@ -18,8 +18,7 @@ export default function Home() {
               onze passie.
             </h1>
             <p className="hero-sub">
-              Bij In2Hairstyle sta je persoonlijk centraal. Vakmanschap, oog voor detail en een
-              warm welkom in het hart van Eerbeek.
+              Vers geknipt, zonder poespas — bij jou om de hoek in Eerbeek.
             </p>
             <div className="hero-actions">
               <a href="/afspraak" className="btn btn-primary">
