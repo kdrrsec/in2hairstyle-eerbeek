@@ -153,8 +153,8 @@ export default function AfspraakPage() {
 
   return (
     <main className="booking-page">
-      <a href="/" className="brand booking-brand">
-        In2<span>Hairstyle</span>
+      <a href="/" className="booking-brand">
+        <img src="/logo.png" alt="In2Hairstyle" className="booking-brand-logo" />
       </a>
 
       <div className="booking-shell">

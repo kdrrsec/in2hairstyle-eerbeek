@@ -74,8 +74,8 @@ export default function AdminPage() {
   if (!authed) {
     return (
       <main className="booking-page">
-        <a href="/" className="brand booking-brand">
-          In2<span>Hairstyle</span>
+        <a href="/" className="booking-brand">
+          <img src="/logo.png" alt="In2Hairstyle" className="booking-brand-logo" />
         </a>
         <div className="booking-card admin-login">
           <h1>Beheer inloggen</h1>
@@ -101,8 +101,8 @@ export default function AdminPage() {
 
   return (
     <main className="booking-page">
-      <a href="/" className="brand booking-brand">
-        In2<span>Hairstyle</span>
+      <a href="/" className="booking-brand">
+        <img src="/logo.png" alt="In2Hairstyle" className="booking-brand-logo" />
       </a>
       <div className="booking-card admin-dashboard">
         <h1>Afspraken</h1>

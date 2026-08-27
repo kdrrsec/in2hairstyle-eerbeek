@@ -98,10 +98,8 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Knippen</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="14" cy="14" r="4" />
-                    <circle cx="14" cy="34" r="4" />
-                    <path d="M17 16 L38 38 M17 32 L38 10" />
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.64 7.64a3.5 3.5 0 1 0-1.28 1.28L10 10.6 6.36 14.24a3.5 3.5 0 1 0 1.28 1.28L12 11.4l7.5 7.5H21v-1L9.64 7.64ZM6 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7.5-9.5-1.4-1.4L21 2h-2Z" />
                   </svg>
                 </div>
                 <h3>Knippen</h3>
@@ -110,10 +108,8 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Baard</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 14c0-3 2-5 4-5 2 0 3 2 6 2s4-2 6-2c2 0 4 2 4 5" />
-                    <path d="M14 14v6c0 10 4 18 10 18s10-8 10-18v-6" />
-                    <path d="M20 24c1 2 2 3 4 3s3-1 4-3" />
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3c-3.6 0-6.2 2.7-6.2 6.4v1.9c0 .8-.3 1.5-.9 2-1 .9-1.4 2-1.4 3.3 0 3.5 3.6 5.9 8.5 5.9s8.5-2.4 8.5-5.9c0-1.3-.4-2.4-1.4-3.3-.6-.5-.9-1.2-.9-2V9.4C18.2 5.7 15.6 3 12 3Zm0 2.2c1.9 0 3.2 1.1 3.7 3-1.1-.6-2.4-.9-3.7-.9s-2.6.3-3.7.9c.5-1.9 1.8-3 3.7-3ZM8.4 12.7c.9.6 2.1 1 3.6 1s2.7-.4 3.6-1c.2.6.3 1.3.3 2 0 2.6-1.9 4.3-3.9 4.3s-3.9-1.7-3.9-4.3c0-.7.1-1.4.3-2Z" />
                   </svg>
                 </div>
                 <h3>Baard</h3>
@@ -122,10 +118,8 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Combi</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 32 L28 12" />
-                    <path d="M28 12 L40 8 L36 20 L28 12Z" />
-                    <path d="M8 32 L6 38 L12 36" />
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 3h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Zm.5 6h2a.5.5 0 0 1 .5.5V19a1.5 1.5 0 0 1-3 0V9.5a.5.5 0 0 1 .5-.5Zm5.5 0h2a.5.5 0 0 1 .5.5V19a1.5 1.5 0 0 1-3 0V9.5a.5.5 0 0 1 .5-.5Zm5.5 0h2a.5.5 0 0 1 .5.5V19a1.5 1.5 0 0 1-3 0V9.5a.5.5 0 0 1 .5-.5Z" />
                   </svg>
                 </div>
                 <h3>Knippen + Baard</h3>
@@ -134,10 +128,8 @@ export default function Home() {
               <div className="card">
                 <span className="card-tag">Kinderen</span>
                 <div className="card-icon-line">
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="24" cy="22" r="10" />
-                    <path d="M16 16c2-4 6-6 8-6s6 2 8 6" />
-                    <path d="M19 24c1.5 2 3.5 3 5 3s3.5-1 5-3" />
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2c-1.8 0-3.2 1.1-3.7 2.8C6.4 5.4 5 7 5 9c0 .9.3 1.7.7 2.4C5.3 12 5 12.9 5 14c0 3.6 3.1 7 7 7s7-3.4 7-7c0-1.1-.3-2-.7-2.6.4-.7.7-1.5.7-2.4 0-2-1.4-3.6-3.3-4.2C15.2 3.1 13.8 2 12 2Zm-2.5 9.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Zm5 0a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM9 16c.8.7 1.8 1 3 1s2.2-.3 3-1c-.3 1.8-1.5 3-3 3s-2.7-1.2-3-3Z" />
                   </svg>
                 </div>
                 <h3>Knippen kind (t/m 12 jaar)</h3>
@@ -227,7 +219,7 @@ export default function Home() {
 
       <footer className="footer">
         <div className="container footer-inner">
-          <a href="#top" className="brand brand-footer">
+          <a href="#top" className="brand-footer">
             In2<span>Hairstyle</span>
           </a>
           <p>&copy; {year} In2Hairstyle Eerbeek. Alle rechten voorbehouden.</p>
