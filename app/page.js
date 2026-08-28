@@ -12,7 +12,7 @@ export default function Home() {
           <div className="hero-bg" aria-hidden="true"></div>
           <div className="hero-content">
             <p className="eyebrow">Dames &amp; Heren Kapsalon · Eerbeek</p>
-            <h1>Knippen in Eerbeek.</h1>
+            <h1>Welkom bij In2Hairstyle</h1>
             <div className="hero-actions">
               <a href="/afspraak" className="btn btn-primary">
                 Maak afspraak
