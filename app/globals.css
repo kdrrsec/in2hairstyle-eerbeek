@@ -236,21 +236,6 @@ h2.center { text-align: center; max-width: 640px; margin-left: auto; margin-righ
   align-items: center;
 }
 .split-text p { color: var(--text-soft); }
-.checklist { list-style: none; padding: 0; margin: 1.5em 0 0; }
-.checklist li {
-  padding-left: 28px;
-  position: relative;
-  margin-bottom: 12px;
-  color: var(--espresso-light);
-  font-weight: 500;
-}
-.checklist li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-weight: 700;
-}
 
 .media-frame {
   aspect-ratio: 1;

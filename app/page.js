@@ -65,7 +65,7 @@ export default function Home() {
               <p>
                 In2Hairstyle is dé kapsalon voor dames en heren in Eerbeek. Met jarenlange
                 ervaring en een scherp oog voor de laatste trends zorgen wij voor een knipbeurt
-                die precies bij jou past — of je nu op zoek bent naar een frisse nieuwe look of
+                die precies bij jou past, of je nu op zoek bent naar een frisse nieuwe look of
                 een vertrouwde stijl.
               </p>
               <p>
@@ -73,11 +73,6 @@ export default function Home() {
                 daartussenin. Kwaliteit, gezelligheid en aandacht voor de klant staan bij ons
                 voorop.
               </p>
-              <ul className="checklist">
-                <li>Ervaren kappers voor dames, heren &amp; kinderen</li>
-                <li>Persoonlijk advies op maat</li>
-                <li>Gezellige sfeer in Eerbeek</li>
-              </ul>
             </div>
           </div>
         </section>

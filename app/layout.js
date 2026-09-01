@@ -3,7 +3,7 @@ import './globals.css';
 export const metadata = {
   title: 'In2Hairstyle | Dames & Heren Kapsalon Eerbeek',
   description:
-    'In2Hairstyle in Eerbeek — dames- en herenkapsalon voor knippen, kleuren en styling. Maak vandaag nog een afspraak.',
+    'In2Hairstyle in Eerbeek, dames- en herenkapsalon voor knippen, kleuren en styling. Maak vandaag nog een afspraak.',
 };
 
 export default function RootLayout({ children }) {

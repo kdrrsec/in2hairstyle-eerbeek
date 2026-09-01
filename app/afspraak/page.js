@@ -261,7 +261,7 @@ export default function AfspraakPage() {
 
             {step === 'details' && (
               <div className="booking-panel">
-                <h1>Laatste stap — jouw gegevens</h1>
+                <h1>Laatste stap: jouw gegevens</h1>
                 <form onSubmit={handleSubmit} className="details-form">
                   <label className="field">
                     <span>Naam *</span>
