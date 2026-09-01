@@ -210,7 +210,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-inner">
           <a href="#top" className="brand-footer">
-            In2<span>Hairstyle</span>
+            <img src="/logo.png" alt="In2Hairstyle" className="brand-footer-logo" />
           </a>
           <p>&copy; {year} In2Hairstyle Eerbeek. Alle rechten voorbehouden.</p>
           <div className="socials">

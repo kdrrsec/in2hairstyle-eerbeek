@@ -383,12 +383,17 @@ h2.center { text-align: center; max-width: 640px; margin-left: auto; margin-righ
   gap: 16px;
 }
 .brand-footer {
-  font-family: var(--font-head);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--cream);
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
-.brand-footer span { color: var(--gold); }
+.brand-footer-logo {
+  height: 52px;
+  width: auto;
+  background: var(--cream);
+  border-radius: 50%;
+  padding: 4px;
+}
 .footer p { margin: 0; font-size: 0.85rem; }
 .socials { display: flex; gap: 20px; }
 .socials a { font-size: 0.85rem; font-weight: 500; }
