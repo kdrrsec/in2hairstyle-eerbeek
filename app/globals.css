@@ -381,11 +381,12 @@ h2.center { text-align: center; max-width: 640px; margin-left: auto; margin-righ
   line-height: 0;
 }
 .brand-footer-logo {
-  height: 52px;
-  width: auto;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
   background: var(--cream);
   border-radius: 50%;
-  padding: 4px;
+  padding: 6px;
 }
 .footer p { margin: 0; font-size: 0.85rem; }
 .socials { display: flex; gap: 20px; }
