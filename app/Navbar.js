@@ -18,50 +18,48 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="navbar" id="navbar">
-        <div className="nav-inner">
-          <a href="#top" className="brand" onClick={close}>
-            <img src="/logo.png" alt="In2Hairstyle" className="brand-logo" />
+      <header className="hx-nav">
+        <div className="hx-wrap hx-nav-inner">
+          <a href="#top" className="hx-nav-brand" onClick={close}>
+            <img src="/logo.png" alt="In2Hairstyle" />
           </a>
-          <nav className="nav-links">
-            <a href="#over-ons">Over ons</a>
-            <a href="#diensten">Diensten</a>
+          <nav className="hx-nav-links">
+            <a href="#salon">Salon</a>
+            <a href="#prijzen">Prijzen</a>
             <a href="#contact">Contact</a>
-          </nav>
-          <div className="nav-right">
-            <a href="/afspraak" className="btn btn-primary nav-cta">
-              Maak afspraak
+            <a href="/afspraak" className="hx-btn hx-btn-copper hx-btn-sm">
+              Afspraak plannen
             </a>
-            <button
-              className={`burger${open ? ' open' : ''}`}
-              aria-label={open ? 'Menu sluiten' : 'Menu openen'}
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
+          </nav>
+          <button
+            className={`hx-burger${open ? ' open' : ''}`}
+            aria-label={open ? 'Menu sluiten' : 'Menu openen'}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
 
-        <nav className={`nav-mobile${open ? ' open' : ''}`}>
-          <a href="#over-ons" onClick={close}>
-            Over ons
+        <nav className={`hx-nav-mobile${open ? ' open' : ''}`}>
+          <a href="#salon" onClick={close}>
+            Salon
           </a>
-          <a href="#diensten" onClick={close}>
-            Diensten
+          <a href="#prijzen" onClick={close}>
+            Prijzen
           </a>
           <a href="#contact" onClick={close}>
             Contact
           </a>
-          <a href="/afspraak" className="btn btn-primary nav-mobile-cta" onClick={close}>
-            Maak afspraak
+          <a href="/afspraak" className="hx-btn hx-btn-copper" onClick={close}>
+            Afspraak plannen
           </a>
         </nav>
       </header>
 
-      <div className={`nav-backdrop${open ? ' open' : ''}`} onClick={close} aria-hidden="true"></div>
+      <div className={`hx-backdrop${open ? ' open' : ''}`} onClick={close} aria-hidden="true"></div>
     </>
   );
 }

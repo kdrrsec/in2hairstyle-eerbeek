@@ -1,5 +1,62 @@
 import Navbar from './Navbar';
 
+const services = [
+  {
+    name: 'Knippen',
+    desc: 'Kort, lang of ergens daartussen: geknipt zoals jij het wilt.',
+    duration: '30 min',
+    price: '€27,50',
+    icon: 'scissors',
+  },
+  {
+    name: 'Baard',
+    desc: 'Getrimd, gemodelleerd en strak opgelijnd.',
+    duration: '15 min',
+    price: '€17,50',
+    icon: '/icons/beard.png',
+  },
+  {
+    name: 'Knippen + Baard',
+    desc: 'Haar en baard in één afspraak, helemaal op elkaar afgestemd.',
+    duration: '45 min',
+    price: '€42,50',
+    icon: '/icons/cut-beard.png',
+  },
+  {
+    name: 'Knippen kind',
+    note: 't/m 12 jaar',
+    desc: 'Rustig aan en op hun gemak in de stoel.',
+    duration: '30 min',
+    price: '€22,50',
+    icon: '/icons/child.png',
+  },
+];
+
+const hours = [
+  ['Maandag', null],
+  ['Dinsdag', '09:30 – 18:00'],
+  ['Woensdag', '09:30 – 18:00'],
+  ['Donderdag', '09:30 – 18:00'],
+  ['Vrijdag', '09:30 – 20:00'],
+  ['Zaterdag', '09:30 – 18:00'],
+  ['Zondag', null],
+];
+
+function ServiceIcon({ icon }) {
+  if (icon === 'scissors') {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="6" cy="6" r="3" />
+        <circle cx="6" cy="18" r="3" />
+        <line x1="20" y1="4" x2="8.12" y2="15.88" />
+        <line x1="14.47" y1="14.48" x2="20" y2="20" />
+        <line x1="8.12" y1="8.12" x2="12" y2="12" />
+      </svg>
+    );
+  }
+  return <span className="icon-mask" style={{ '--icon': `url('${icon}')` }} />;
+}
+
 export default function Home() {
   const year = new Date().getFullYear();
 
@@ -7,186 +64,180 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main id="top">
-        <section className="hero">
-          <div className="hero-bg" aria-hidden="true"></div>
-          <div className="hero-content">
-            <p className="eyebrow">Dames &amp; Heren Kapsalon · Eerbeek</p>
-            <h1>Welkom bij In2Hairstyle</h1>
-            <div className="hero-actions">
-              <a href="/afspraak" className="btn btn-primary">
-                Maak afspraak
-              </a>
-              <a href="#diensten" className="btn btn-ghost">
-                Bekijk diensten
-              </a>
+      <main id="top" className="home">
+        <section className="hx-hero">
+          <div className="hx-hero-pattern" aria-hidden="true"></div>
+          <div className="hx-wrap hx-hero-grid">
+            <div className="hx-hero-text">
+              <p className="hx-label">Dames &amp; Heren Kapsalon — Eerbeek</p>
+              <h1>
+                Knippen.
+                <br />
+                Stylen.
+                <br />
+                <span>Verzorgen.</span>
+              </h1>
+              <p className="hx-hero-lead">
+                Voor dames, heren en kids. Plan je afspraak online in een paar klikken, of loop
+                even binnen aan de Coldenhovenseweg.
+              </p>
+              <div className="hx-actions">
+                <a href="/afspraak" className="hx-btn hx-btn-copper">
+                  Afspraak plannen
+                </a>
+                <a href="#prijzen" className="hx-btn hx-btn-ghost">
+                  Prijzen bekijken
+                </a>
+              </div>
+            </div>
+            <div className="hx-hero-photo">
+              <img src="/hero-in2hairstyle.jpg" alt="De ingang van In2Hairstyle in Eerbeek" />
+              <span className="hx-photo-badge">Vrijdag open tot 20:00</span>
             </div>
           </div>
         </section>
 
-        <section className="section" id="over-ons">
-          <div className="container split">
-            <div className="split-media" aria-hidden="true">
-              <div className="media-frame">
-                <svg viewBox="0 0 200 200" className="scissors-art">
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="96"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    opacity="0.35"
-                  />
-                  <g transform="translate(100 100)">
-                    <path
-                      d="M-40 -35 L15 20 M-40 35 L15 -20"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      fill="none"
-                    />
-                    <circle cx="-45" cy="-35" r="9" fill="none" stroke="currentColor" strokeWidth="4" />
-                    <circle cx="-45" cy="35" r="9" fill="none" stroke="currentColor" strokeWidth="4" />
-                    <path
-                      d="M15 20 L45 30 M15 -20 L45 -30"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      fill="none"
-                    />
-                  </g>
-                </svg>
+        <div className="hx-strip">
+          <div className="hx-wrap hx-strip-grid">
+            <div>
+              <span className="hx-strip-label">Adres</span>
+              <span>Coldenhovenseweg 6a, Eerbeek</span>
+            </div>
+            <div>
+              <span className="hx-strip-label">Telefoon</span>
+              <a href="tel:+31313410693">0313 410 693</a>
+            </div>
+            <div>
+              <span className="hx-strip-label">Geopend</span>
+              <span>Dinsdag t/m zaterdag</span>
+            </div>
+          </div>
+        </div>
+
+        <section className="hx-section hx-sand" id="salon">
+          <div className="hx-wrap hx-salon">
+            <div className="hx-hexlogo" aria-hidden="true">
+              <div className="hx-hexlogo-inner">
+                <img src="/logo.png" alt="" />
               </div>
             </div>
-            <div className="split-text">
-              <p className="eyebrow">Over ons</p>
-              <h2>Vakmanschap met een persoonlijke touch</h2>
+            <div className="hx-salon-text">
+              <p className="hx-label">De salon</p>
+              <h2>Eén salon voor het hele gezin</h2>
               <p>
-                In2Hairstyle is dé kapsalon voor dames en heren in Eerbeek. Met jarenlange
-                ervaring en een scherp oog voor de laatste trends zorgen wij voor een knipbeurt
-                die precies bij jou past, of je nu op zoek bent naar een frisse nieuwe look of
-                een vertrouwde stijl.
+                Bij In2Hairstyle knippen we dames, heren en kinderen in een moderne salon midden in
+                Eerbeek. Je herkent ons aan de lichtgevende honingraat aan het plafond. Eenmaal in de
+                stoel nemen we eerst de tijd om te horen wat je wilt.
               </p>
               <p>
-                Bij ons ben je aan het juiste adres voor knippen, kleuren, stylen en alles
-                daartussenin. Kwaliteit, gezelligheid en aandacht voor de klant staan bij ons
-                voorop.
+                Een kort fadekapsel, lang haar dat weer in model moet of een baard die strak getrimd
+                moet worden: we werken nauwkeurig en denken met je mee.
               </p>
+              <ol className="hx-facts">
+                <li>
+                  <span className="hx-fact-num">01</span>
+                  <strong>Dames &amp; heren</strong>
+                  <span>En de kids natuurlijk ook.</span>
+                </li>
+                <li>
+                  <span className="hx-fact-num">02</span>
+                  <strong>Online boeken</strong>
+                  <span>Kies zelf je dag en tijd.</span>
+                </li>
+                <li>
+                  <span className="hx-fact-num">03</span>
+                  <strong>Koopavond</strong>
+                  <span>Vrijdag tot 20:00 geopend.</span>
+                </li>
+              </ol>
             </div>
           </div>
         </section>
 
-        <section className="section section-alt" id="diensten">
-          <div className="container">
-            <p className="eyebrow center">Diensten</p>
-            <h2 className="center">Waar wij je mee kunnen helpen</h2>
-            <div className="cards">
-              <div className="card">
-                <span className="card-tag">Knippen</span>
-                <div className="card-icon-line">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="6" cy="6" r="3" />
-                    <circle cx="6" cy="18" r="3" />
-                    <line x1="20" y1="4" x2="8.12" y2="15.88" />
-                    <line x1="14.47" y1="14.48" x2="20" y2="20" />
-                    <line x1="8.12" y1="8.12" x2="12" y2="12" />
-                  </svg>
-                </div>
-                <h3>Knippen</h3>
-                <p>Een knipbeurt op maat, helemaal afgestemd op jouw stijl.</p>
+        <section className="hx-section hx-dark" id="prijzen">
+          <div className="hx-hero-pattern hx-pattern-soft" aria-hidden="true"></div>
+          <div className="hx-wrap">
+            <div className="hx-head">
+              <div>
+                <p className="hx-label">Behandelingen &amp; prijzen</p>
+                <h2>Kies je behandeling</h2>
               </div>
-              <div className="card">
-                <span className="card-tag">Baard</span>
-                <div className="card-icon-line">
-                  <span className="icon-mask" style={{ '--icon': "url('/icons/beard.png')" }} />
-                </div>
-                <h3>Baard</h3>
-                <p>Strak getrimd en verzorgd, perfect in lijn met je gezicht.</p>
-              </div>
-              <div className="card">
-                <span className="card-tag">Combi</span>
-                <div className="card-icon-line">
-                  <span className="icon-mask" style={{ '--icon': "url('/icons/cut-beard.png')" }} />
-                </div>
-                <h3>Knippen + Baard</h3>
-                <p>De complete behandeling. Fris de deur uit van top tot kin.</p>
-              </div>
-              <div className="card">
-                <span className="card-tag">Kinderen</span>
-                <div className="card-icon-line">
-                  <span className="icon-mask" style={{ '--icon': "url('/icons/child.png')" }} />
-                </div>
-                <h3>Knippen kind (t/m 12 jaar)</h3>
-                <p>Een ontspannen knipbeurt voor de kleintjes, in een gezellige sfeer.</p>
-              </div>
+              <p>Klik op een behandeling en plan direct een moment dat jou uitkomt.</p>
             </div>
-
-            <div className="price-list">
-              <h3 className="price-list-title">Prijslijst</h3>
-              <p className="price-list-category">Hoofdbehandelingen</p>
-              <div className="price-row">
-                <span className="name">Knippen</span>
-                <span className="dots"></span>
-                <span className="duration">30 min</span>
-                <span className="price">€27,50</span>
-              </div>
-              <div className="price-row">
-                <span className="name">Baard</span>
-                <span className="dots"></span>
-                <span className="duration">15 min</span>
-                <span className="price">€17,50</span>
-              </div>
-              <div className="price-row">
-                <span className="name">Knippen + Baard</span>
-                <span className="dots"></span>
-                <span className="duration">45 min</span>
-                <span className="price">€42,50</span>
-              </div>
-              <div className="price-row">
-                <span className="name">Knippen kind (t/m 12 jaar)</span>
-                <span className="dots"></span>
-                <span className="duration">30 min</span>
-                <span className="price">€22,50</span>
-              </div>
+            <div className="hx-services">
+              {services.map((s) => (
+                <a key={s.name} href="/afspraak" className="hx-service">
+                  <div className="hx-service-top">
+                    <span className="hx-service-icon">
+                      <ServiceIcon icon={s.icon} />
+                    </span>
+                    <span className="hx-service-dur">{s.duration}</span>
+                  </div>
+                  <h3>
+                    {s.name}
+                    {s.note && <small>{s.note}</small>}
+                  </h3>
+                  <p>{s.desc}</p>
+                  <div className="hx-service-bottom">
+                    <span className="hx-service-price">{s.price}</span>
+                    <span className="hx-service-go">Boeken</span>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="section" id="contact">
-          <div className="container split">
-            <div className="split-text">
-              <p className="eyebrow">Contact</p>
-              <h2>Kom langs of maak een afspraak</h2>
-              <p>Loop binnen of neem contact op om een afspraak in te plannen. We staan voor je klaar.</p>
-              <div className="contact-list">
-                <div className="contact-item">
-                  <span className="contact-label">Adres</span>
-                  <span>Coldenhovenseweg 6a, 6961 ED Eerbeek</span>
+        <section className="hx-section" id="contact">
+          <div className="hx-wrap">
+            <div className="hx-head">
+              <div>
+                <p className="hx-label">Contact</p>
+                <h2>Langskomen in Eerbeek</h2>
+              </div>
+              <p>Bel ons gerust, of plan zelf online een afspraak in.</p>
+            </div>
+            <div className="hx-contact">
+              <div className="hx-contact-cards">
+                <div className="hx-card">
+                  <h3>In2Hairstyle</h3>
+                  <p>
+                    Coldenhovenseweg 6a
+                    <br />
+                    6961 ED Eerbeek
+                  </p>
+                  <p>
+                    <a href="tel:+31313410693" className="hx-link">
+                      0313 410 693
+                    </a>
+                  </p>
+                  <div className="hx-actions">
+                    <a href="/afspraak" className="hx-btn hx-btn-copper">
+                      Afspraak plannen
+                    </a>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=Coldenhovenseweg+6a,+6961+ED+Eerbeek"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hx-btn hx-btn-ink"
+                    >
+                      Route
+                    </a>
+                  </div>
                 </div>
-                <div className="contact-item">
-                  <span className="contact-label">Telefoon</span>
-                  <a href="tel:+31313410693">0313 410 693</a>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-label">Openingstijden</span>
-                  <span>
-                    Di – Do: 09:30 – 18:00
-                    <br />
-                    Vr: 09:30 – 20:00
-                    <br />
-                    Za: 09:30 – 18:00
-                    <br />
-                    Zo – Ma: Gesloten
-                  </span>
+                <div className="hx-card">
+                  <h3>Openingstijden</h3>
+                  <dl className="hx-hours">
+                    {hours.map(([day, time]) => (
+                      <div key={day} className={time ? '' : 'closed'}>
+                        <dt>{day}</dt>
+                        <dd>{time || 'Gesloten'}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
               </div>
-              <a href="/afspraak" className="btn btn-primary">
-                Maak afspraak
-              </a>
-            </div>
-            <div className="split-media">
-              <div className="map-frame">
+              <div className="hx-map">
                 <iframe
                   title="Locatie In2Hairstyle Eerbeek"
                   src="https://www.google.com/maps?q=Coldenhovenseweg+6a,+6961+ED+Eerbeek&output=embed"
@@ -202,13 +253,18 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="container footer-inner">
-          <a href="#top" className="brand-footer">
-            <img src="/logo.png" alt="In2Hairstyle" className="brand-footer-logo" />
+      <footer className="hx-footer">
+        <div className="hx-wrap hx-footer-grid">
+          <a href="#top" className="hx-footer-brand">
+            <img src="/logo.png" alt="In2Hairstyle" />
           </a>
-          <p>&copy; {year} In2Hairstyle Eerbeek. Alle rechten voorbehouden.</p>
-          <div className="socials">
+          <nav className="hx-footer-nav">
+            <a href="#salon">Salon</a>
+            <a href="#prijzen">Prijzen</a>
+            <a href="#contact">Contact</a>
+            <a href="/afspraak">Afspraak</a>
+          </nav>
+          <div className="hx-footer-social">
             <a href="https://www.facebook.com/In2hairstyle/" target="_blank" rel="noopener noreferrer">
               Facebook
             </a>
@@ -216,6 +272,9 @@ export default function Home() {
               Instagram
             </a>
           </div>
+        </div>
+        <div className="hx-wrap hx-footer-bottom">
+          <p>&copy; {year} In2Hairstyle Eerbeek</p>
         </div>
       </footer>
     </>
