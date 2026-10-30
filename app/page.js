@@ -92,7 +92,6 @@ export default function Home() {
             </div>
             <div className="hx-hero-photo">
               <img src="/hero-in2hairstyle.jpg" alt="De ingang van In2Hairstyle in Eerbeek" />
-              <span className="hx-photo-badge">Vrijdag open tot 20:00</span>
             </div>
           </div>
         </section>
