@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="hx-section hx-sand" id="salon">
+        <section className="hx-section hx-sand" id="over-ons">
           <div className="hx-wrap hx-salon">
             <div className="hx-hexlogo" aria-hidden="true">
               <div className="hx-hexlogo-inner">
@@ -121,7 +121,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hx-salon-text">
-              <p className="hx-label">De salon</p>
+              <p className="hx-label">Over ons</p>
               <h2>Eén salon voor het hele gezin</h2>
               <p>
                 Bij In2Hairstyle knippen we dames, heren en kinderen in een moderne salon midden in
@@ -258,7 +258,7 @@ export default function Home() {
             <img src="/logo.png" alt="In2Hairstyle" />
           </a>
           <nav className="hx-footer-nav">
-            <a href="#salon">Salon</a>
+            <a href="#over-ons">Over ons</a>
             <a href="#prijzen">Prijzen</a>
             <a href="#contact">Contact</a>
             <a href="/afspraak">Afspraak</a>

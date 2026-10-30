@@ -24,7 +24,7 @@ export default function Navbar() {
             <img src="/logo.png" alt="In2Hairstyle" />
           </a>
           <nav className="hx-nav-links">
-            <a href="#salon">Salon</a>
+            <a href="#over-ons">Over ons</a>
             <a href="#prijzen">Prijzen</a>
             <a href="#contact">Contact</a>
             <a href="/afspraak" className="hx-btn hx-btn-copper hx-btn-sm">
@@ -44,8 +44,8 @@ export default function Navbar() {
         </div>
 
         <nav className={`hx-nav-mobile${open ? ' open' : ''}`}>
-          <a href="#salon" onClick={close}>
-            Salon
+          <a href="#over-ons" onClick={close}>
+            Over ons
           </a>
           <a href="#prijzen" onClick={close}>
             Prijzen
