@@ -132,23 +132,6 @@ export default function Home() {
                 Een kort fadekapsel, lang haar dat weer in model moet of een baard die strak getrimd
                 moet worden: we werken nauwkeurig en denken met je mee.
               </p>
-              <ol className="hx-facts">
-                <li>
-                  <span className="hx-fact-num">01</span>
-                  <strong>Dames &amp; heren</strong>
-                  <span>En de kids natuurlijk ook.</span>
-                </li>
-                <li>
-                  <span className="hx-fact-num">02</span>
-                  <strong>Online boeken</strong>
-                  <span>Kies zelf je dag en tijd.</span>
-                </li>
-                <li>
-                  <span className="hx-fact-num">03</span>
-                  <strong>Koopavond</strong>
-                  <span>Vrijdag tot 20:00 geopend.</span>
-                </li>
-              </ol>
             </div>
           </div>
         </section>
