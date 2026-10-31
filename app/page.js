@@ -122,15 +122,14 @@ export default function Home() {
             </div>
             <div className="hx-salon-text">
               <p className="hx-label">Over ons</p>
-              <h2>Eén salon voor het hele gezin</h2>
+              <h2>Kapsalon in Eerbeek</h2>
               <p>
-                Bij In2Hairstyle knippen we dames, heren en kinderen in een moderne salon midden in
-                Eerbeek. Je herkent ons aan de lichtgevende honingraat aan het plafond. Eenmaal in de
-                stoel nemen we eerst de tijd om te horen wat je wilt.
+                In2Hairstyle is een kapsalon voor dames, heren en kinderen aan de Coldenhovenseweg
+                in Eerbeek.
               </p>
               <p>
-                Een kort fadekapsel, lang haar dat weer in model moet of een baard die strak getrimd
-                moet worden: we werken nauwkeurig en denken met je mee.
+                Je kunt bij ons terecht om te knippen en voor je baard. Een afspraak maak je
+                online, maar je mag ook gewoon binnenlopen.
               </p>
             </div>
           </div>
