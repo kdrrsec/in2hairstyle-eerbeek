@@ -12,6 +12,44 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // Ankerlinks laten scrollen zonder #sectie in de adresbalk.
+  useEffect(() => {
+    function clearHash() {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    function scrollToId(id, behavior) {
+      if (id === 'top') {
+        window.scrollTo({ top: 0, behavior });
+        return true;
+      }
+      const target = document.getElementById(id);
+      if (!target) return false;
+      target.scrollIntoView({ behavior });
+      return true;
+    }
+
+    function onClick(e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      if (scrollToId(link.getAttribute('href').slice(1), 'smooth')) {
+        e.preventDefault();
+        clearHash();
+      }
+    }
+
+    // Oude links met #sectie: naar de sectie scrollen en de hash weghalen.
+    if (window.location.hash) {
+      scrollToId(decodeURIComponent(window.location.hash.slice(1)), 'auto');
+      // Na de router-initialisatie, anders zet Next de hash terug.
+      setTimeout(clearHash, 0);
+    }
+
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+
   function close() {
     setOpen(false);
   }
