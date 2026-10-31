@@ -1,0 +1,36 @@
+# In2Hairstyle Eerbeek
+
+> Kapsalon voor dames, heren en kinderen in Eerbeek (Gelderland). Knippen, baard trimmen en knippen voor kinderen. Online een afspraak maken of binnenlopen.
+
+## Gegevens
+
+- Naam: In2Hairstyle
+- Adres: Coldenhovenseweg 6a, 6961 ED Eerbeek
+- Telefoon: 0313 410 693
+- Afspraak maken: /afspraak
+- Instagram: https://www.instagram.com/in2hairstyle/
+- Facebook: https://www.facebook.com/In2hairstyle/
+
+## Openingstijden
+
+- Maandag: gesloten
+- Dinsdag: 09:30 – 18:00
+- Woensdag: 09:30 – 18:00
+- Donderdag: 09:30 – 18:00
+- Vrijdag: 09:30 – 20:00
+- Zaterdag: 09:30 – 18:00
+- Zondag: gesloten
+
+## Prijzen
+
+- Knippen (30 min): €27,50
+- Baard (15 min): €17,50
+- Knippen + baard (45 min): €42,50
+- Knippen kind t/m 12 jaar (30 min): €22,50
+
+## Pagina's
+
+- [Over ons](/over-ons)
+- [Prijzen](/prijzen)
+- [Contact en openingstijden](/contact)
+- [Afspraak maken](/afspraak)

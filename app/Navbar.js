@@ -1,9 +1,14 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { navLinks } from '@/lib/site';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -12,62 +17,43 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // Ankerlinks laten scrollen zonder #sectie in de adresbalk.
+  // Oude links zoals /#over-ons doorsturen naar /over-ons.
   useEffect(() => {
-    function clearHash() {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-
-    function scrollToId(id, behavior) {
-      if (id === 'top') {
-        window.scrollTo({ top: 0, behavior });
-        return true;
-      }
-      const target = document.getElementById(id);
-      if (!target) return false;
-      target.scrollIntoView({ behavior });
-      return true;
-    }
-
-    function onClick(e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const link = e.target.closest('a[href^="#"]');
-      if (!link) return;
-      if (scrollToId(link.getAttribute('href').slice(1), 'smooth')) {
-        e.preventDefault();
-        clearHash();
-      }
-    }
-
-    // Oude links met #sectie: naar de sectie scrollen en de hash weghalen.
-    if (window.location.hash) {
-      scrollToId(decodeURIComponent(window.location.hash.slice(1)), 'auto');
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const link = navLinks.find((l) => l.href === `/${hash}`);
+    if (link) {
+      router.replace(link.href);
+    } else if (hash === 'top') {
       // Na de router-initialisatie, anders zet Next de hash terug.
-      setTimeout(clearHash, 0);
+      setTimeout(() => history.replaceState(null, '', window.location.pathname), 0);
     }
-
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
-  }, []);
+  }, [router]);
 
   function close() {
     setOpen(false);
+  }
+
+  function linkProps(href) {
+    return { href, 'aria-current': pathname === href ? 'page' : undefined };
   }
 
   return (
     <>
       <header className="hx-nav">
         <div className="hx-wrap hx-nav-inner">
-          <a href="#top" className="hx-nav-brand" onClick={close}>
+          <Link href="/" className="hx-nav-brand" onClick={close}>
             <img src="/logo.png" alt="In2Hairstyle" />
-          </a>
+          </Link>
           <nav className="hx-nav-links">
-            <a href="#over-ons">Over ons</a>
-            <a href="#prijzen">Prijzen</a>
-            <a href="#contact">Contact</a>
-            <a href="/afspraak" className="hx-btn hx-btn-copper hx-btn-sm">
+            {navLinks.map((l) => (
+              <Link key={l.href} {...linkProps(l.href)}>
+                {l.label}
+              </Link>
+            ))}
+            <Link href="/afspraak" className="hx-btn hx-btn-copper hx-btn-sm">
               Afspraak plannen
-            </a>
+            </Link>
           </nav>
           <button
             className={`hx-burger${open ? ' open' : ''}`}
@@ -82,18 +68,14 @@ export default function Navbar() {
         </div>
 
         <nav className={`hx-nav-mobile${open ? ' open' : ''}`}>
-          <a href="#over-ons" onClick={close}>
-            Over ons
-          </a>
-          <a href="#prijzen" onClick={close}>
-            Prijzen
-          </a>
-          <a href="#contact" onClick={close}>
-            Contact
-          </a>
-          <a href="/afspraak" className="hx-btn hx-btn-copper" onClick={close}>
+          {navLinks.map((l) => (
+            <Link key={l.href} {...linkProps(l.href)} onClick={close}>
+              {l.label}
+            </Link>
+          ))}
+          <Link href="/afspraak" className="hx-btn hx-btn-copper" onClick={close}>
             Afspraak plannen
-          </a>
+          </Link>
         </nav>
       </header>
 

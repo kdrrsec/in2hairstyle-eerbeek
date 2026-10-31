@@ -1,9 +1,20 @@
 import './globals.css';
+import { JsonLd } from './sections';
+import { SITE_URL, salonJsonLd } from '@/lib/site';
 
 export const metadata = {
-  title: 'In2Hairstyle | Dames & Heren Kapsalon Eerbeek',
-  description:
-    'In2Hairstyle in Eerbeek, dames- en herenkapsalon voor knippen, kleuren en styling. Maak vandaag nog een afspraak.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'In2Hairstyle | Dames & Heren Kapsalon Eerbeek',
+    template: '%s | In2Hairstyle Eerbeek',
+  },
+  applicationName: 'In2Hairstyle',
+  formatDetection: { telephone: false },
+  robots: { index: true, follow: true },
+  other: {
+    'geo.region': 'NL-GE',
+    'geo.placename': 'Eerbeek',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -17,7 +28,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <JsonLd data={salonJsonLd()} />
+      </body>
     </html>
   );
 }
