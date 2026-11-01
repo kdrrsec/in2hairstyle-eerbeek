@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { pool, ensureSchema } from '@/lib/db';
+import { getTreatments } from '@/lib/treatments';
 
 export async function GET() {
-  await ensureSchema();
-  const { rows } = await pool.query(
-    'SELECT id, name, duration_minutes, price_from FROM treatments ORDER BY sort_order ASC'
+  const treatments = await getTreatments();
+  return NextResponse.json(
+    { treatments },
+    { headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=86400' } }
   );
-  return NextResponse.json({ treatments: rows });
 }
