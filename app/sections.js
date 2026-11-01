@@ -174,6 +174,11 @@ export function Footer() {
       </div>
       <div className="hx-wrap hx-footer-bottom">
         <p>&copy; {year} In2Hairstyle Eerbeek</p>
+        <a href="https://axaweb.nl" target="_blank" rel="noopener" className="hx-powered">
+          Powered by
+          <img src="/axaweb-favicon.png" alt="" width="16" height="16" />
+          <span>AxaWeb</span>
+        </a>
       </div>
     </footer>
   );
