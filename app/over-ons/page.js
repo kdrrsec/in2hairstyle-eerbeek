@@ -4,7 +4,7 @@ import { OverOns, SubPage } from '../sections';
 export const metadata = pageMetadata({
   title: 'Over ons',
   description:
-    'In2Hairstyle is een kapsalon voor dames, heren en kinderen aan de Coldenhovenseweg 6a in Eerbeek. Online een afspraak maken of gewoon binnenlopen.',
+    'In2Hairstyle is een kapsalon voor heren en kinderen aan de Coldenhovenseweg 6a in Eerbeek. Online een afspraak maken of gewoon binnenlopen.',
   path: '/over-ons',
 });
 

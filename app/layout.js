@@ -5,7 +5,7 @@ import { SITE_URL, salonJsonLd } from '@/lib/site';
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'In2Hairstyle | Dames & Heren Kapsalon Eerbeek',
+    default: 'In2Hairstyle | Herenkapsalon Eerbeek',
     template: '%s | In2Hairstyle Eerbeek',
   },
   applicationName: 'In2Hairstyle',

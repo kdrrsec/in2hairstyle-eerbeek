@@ -15,7 +15,7 @@ export default function Home() {
           <div className="hx-hero-pattern" aria-hidden="true"></div>
           <div className="hx-wrap hx-hero-grid">
             <div className="hx-hero-text">
-              <p className="hx-label">Dames &amp; Heren Kapsalon — Eerbeek</p>
+              <p className="hx-label">Herenkapsalon — Eerbeek</p>
               <h1>
                 Knippen.
                 <br />
@@ -24,7 +24,7 @@ export default function Home() {
                 <span>Verzorgen.</span>
               </h1>
               <p className="hx-hero-lead">
-                Voor dames, heren en kids. Plan je afspraak online in een paar klikken, of loop
+                Voor heren en kids. Plan je afspraak online in een paar klikken, of loop
                 even binnen aan de Coldenhovenseweg.
               </p>
               <div className="hx-actions">

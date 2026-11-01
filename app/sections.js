@@ -31,7 +31,7 @@ export function OverOns({ heading: Heading = 'h2' }) {
           <p className="hx-label">Over ons</p>
           <Heading>Kapsalon in Eerbeek</Heading>
           <p>
-            In2Hairstyle is een kapsalon voor dames, heren en kinderen aan de Coldenhovenseweg in
+            In2Hairstyle is een kapsalon voor heren en kinderen aan de Coldenhovenseweg in
             Eerbeek.
           </p>
           <p>
