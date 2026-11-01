@@ -153,7 +153,6 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.7rem; font-weight: 700;
 }
 .service-name { font-weight: 600; color: var(--espresso); }
-.service-duration { font-size: 0.82rem; color: var(--text-soft); }
 .service-price { font-weight: 700; color: var(--espresso); margin-top: 6px; }
 
 .day-picker {
@@ -633,14 +632,6 @@ a { color: inherit; text-decoration: none; }
   background-color: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
-}
-.hx-service-dur {
-  font-family: var(--hx-head);
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
 }
 .hx-service h3 { font-size: 1.7rem; font-weight: 700; margin: 0 0 10px; }
 .hx-service h3 small {

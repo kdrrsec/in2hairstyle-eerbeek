@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+// Hele bedragen zonder centen: €22 in plaats van €22,00.
 function formatEuro(value) {
-  return new Intl.NumberFormat('nl-NL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+  const digits = Number(value) % 1 === 0 ? 0 : 2;
+  return new Intl.NumberFormat('nl-NL', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(
     value
   );
 }
@@ -191,7 +193,6 @@ export default function AfspraakPage() {
                     >
                       {treatmentId === t.id && <span className="service-check">✓</span>}
                       <span className="service-name">{t.name}</span>
-                      <span className="service-duration">{t.duration_minutes} min</span>
                       <span className="service-price">€{formatEuro(t.price_from)}</span>
                     </button>
                   ))}

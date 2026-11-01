@@ -63,7 +63,6 @@ export function Prijzen({ heading: Heading = 'h2' }) {
                 <span className="hx-service-icon">
                   <ServiceIcon icon={s.icon} />
                 </span>
-                <span className="hx-service-dur">{s.duration}</span>
               </div>
               <h3>
                 {s.name}

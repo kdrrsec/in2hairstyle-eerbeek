@@ -4,7 +4,7 @@ import { Prijzen, SubPage } from '../sections';
 export const metadata = pageMetadata({
   title: 'Prijzen',
   description:
-    'Prijzen bij kapsalon In2Hairstyle in Eerbeek: knippen €27,50, baard €17,50, knippen + baard €42,50 en knippen kind (t/m 12 jaar) €22,50. Direct online boeken.',
+    'Prijzen bij kapsalon In2Hairstyle in Eerbeek: knippen €22, baard €15, knippen + baard €29 en knippen kind (t/m 12 jaar) €19. Direct online boeken.',
   path: '/prijzen',
 });
 
